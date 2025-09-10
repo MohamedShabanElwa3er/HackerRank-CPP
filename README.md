@@ -27,10 +27,4 @@ The goal of this repo is to:
   <img src="./radial-cpp.svg?refresh=1" alt="C++ Progress" width="350"/>
 </p>
 
-✔️ **X / Y Challenges Completed**  
-*(This chart and count update automatically using GitHub Actions)*  
-
 ---
-
-## 📂 Repository Structure
-
