@@ -1,50 +1,42 @@
-name: HackerRank C++ Progress
 
-on:
-  schedule:
-    - cron: "0 0 * * *"   # daily at midnight UTC
-  workflow_dispatch:       # manual trigger
+---
 
-jobs:
-  generate-progress:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+## 🎯 Progress Overview
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+<p align="center">
+  <img src="./radial-cpp.svg?refresh=1" alt="C++ Progress" width="350"/>
+</p>
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+✔️ **X / Y Problems Completed**  
+(Automatically updated when workflow runs)
 
-      - name: Install dependencies
-        run: |
-          pip install matplotlib requests
+---
 
-      - name: Remove old radial chart
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm -f --ignore-unmatch radial-cpp.svg || true
-          if git diff --cached --quiet; then
-            echo "No old chart removed"
-          else
-            git commit -m "chore: remove old radial chart [skip ci]"
-            git push origin HEAD:main
-          fi
+## 🔑 Key Topics Covered
 
-      - name: Generate new radial chart
-        run: |
-          mkdir -p .github/scripts
-          python .github/scripts/generate_radials.py
+- ✅ C++ Basics (I/O, conditionals, loops)  
+- ✅ Strings & Streams  
+- ✅ Object-Oriented Programming (classes, inheritance, polymorphism)  
+- ✅ Standard Template Library (STL)  
+- ✅ Algorithms & Problem Solving  
 
-      - name: Commit new radial chart
-        run: |
-          git add radial-cpp.svg
-          git commit -m "chore: update HackerRank C++ radial chart [skip ci]" || echo "No changes to commit"
-          git push origin HEAD:main
+---
+
+## 📊 GitHub Repository Stats
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=MohamedShabanElwa3er&repo=HackerRank-CPP&theme=github_dark" />
+</p>
+
+---
+
+## 🙌 Contribution & Feedback
+
+This repo is primarily for my **personal practice**, but feel free to:  
+- ⭐ Star this repo if you find it useful  
+- 🐛 Open an issue if you spot improvements  
+- 🔥 Suggest optimizations in C++ style or algorithms  
+
+---
+
+<p align="center">Made with ❤️ in C++</p>
