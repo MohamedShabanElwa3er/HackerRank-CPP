@@ -1,0 +1,50 @@
+name: HackerRank C++ Progress
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # daily at midnight UTC
+  workflow_dispatch:       # manual trigger
+
+jobs:
+  generate-progress:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install matplotlib requests
+
+      - name: Remove old radial chart
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f --ignore-unmatch radial-cpp.svg || true
+          if git diff --cached --quiet; then
+            echo "No old chart removed"
+          else
+            git commit -m "chore: remove old radial chart [skip ci]"
+            git push origin HEAD:main
+          fi
+
+      - name: Generate new radial chart
+        run: |
+          mkdir -p .github/scripts
+          python .github/scripts/generate_radials.py
+
+      - name: Commit new radial chart
+        run: |
+          git add radial-cpp.svg
+          git commit -m "chore: update HackerRank C++ radial chart [skip ci]" || echo "No changes to commit"
+          git push origin HEAD:main
