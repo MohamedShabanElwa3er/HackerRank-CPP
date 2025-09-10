@@ -3,22 +3,23 @@ import matplotlib.pyplot as plt
 # ==============================
 # CONFIGURATION
 # ==============================
-# You can update this number manually OR later fetch from HackerRank API/scraping
-progress = 75   # percentage of problems solved (0–100)
+progress = 75   # replace with actual percentage later
 language = "C++"
 
 # ==============================
-# PLOT RADIAL CHART
+# PLOT RADIAL CHART (Dark Theme)
 # ==============================
 fig, ax = plt.subplots(figsize=(4, 4), subplot_kw=dict(polar=True))
+fig.patch.set_facecolor("#0d1117")  # GitHub dark background
+ax.set_facecolor("#0d1117")
 
-# Full circle background (grey)
-ax.barh(1, 100, color="#e0e0e0")
+# Background circle (dark gray)
+ax.barh(1, 100, color="#30363d")
 
-# Progress bar (blue)
-ax.barh(1, progress, color="#00599C")
+# Progress bar (blue highlight)
+ax.barh(1, progress, color="#58a6ff")
 
-# Add percentage + language name in center
+# Add text inside the circle
 ax.text(
     0, 0,
     f"{language}\n{progress}%",
@@ -26,14 +27,12 @@ ax.text(
     va="center",
     fontsize=16,
     fontweight="bold",
-    color="#333333"
+    color="#c9d1d9"
 )
 
 # Remove axes for clean look
 ax.set_axis_off()
 
-# ==============================
-# SAVE OUTPUT
-# ==============================
-plt.savefig("radial-cpp.svg", format="svg", bbox_inches="tight")
+# Save output (dark SVG)
+plt.savefig("radial-cpp.svg", format="svg", bbox_inches="tight", facecolor="#0d1117")
 plt.close()
