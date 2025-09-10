@@ -15,28 +15,27 @@ fig, ax = plt.subplots(figsize=(4, 4), subplot_kw=dict(polar=True))
 fig.patch.set_facecolor("#0d1117")
 ax.set_facecolor("#0d1117")
 
-# Add dark rectangle to ensure background is never transparent
-ax.add_patch(plt.Circle((0, 0), 2, color="#0d1117", zorder=-1))
-
-# Grey circle background (100%)
-ax.barh(1, 100, color="#30363d")
+# Background circle (100%)
+ax.barh(1, 100, color="#30363d", height=0.3)
 
 # Progress arc
-ax.barh(1, progress, color="#58a6ff")
+ax.barh(1, progress, color="#58a6ff", height=0.3)
 
-# Center text (language + percentage)
-ax.text(
-    0, 0,
-    f"{language}\n{progress}%",
+# Remove axes for clean look
+ax.set_axis_off()
+
+# ==============================
+# ADD CENTER TEXT (perfectly aligned)
+# ==============================
+fig.text(
+    0.5, 0.5,                    # center of figure
+    f"{language}\n{progress}%",  # text
     ha="center",
     va="center",
     fontsize=16,
     fontweight="bold",
-    color="#c9d1d9"   # light gray for dark mode
+    color="#c9d1d9"
 )
-
-# Remove axes for clean look
-ax.set_axis_off()
 
 # ==============================
 # SAVE OUTPUTS
